@@ -1,0 +1,56 @@
+{
+    "name": "table2excel",
+    "version": "1.0.0",
+    "main": "dist/main.cjs.js",
+    "module": "dist/main.es.js",
+    "types": "globals.d.ts",
+    "type": "module",
+    "scripts": {
+        "clean": "rm -rf dist",
+        "dev": "npm run clean && rollup -c ./rollup.config.dev.js --watch",
+        "build": "npm run clean && rollup -c ./rollup.config.prod.js",
+        "test": "jest",
+        "lint": "eslint .",
+        "prepush": "npm run lint && npm test"
+    },
+    "lint-staged": {
+        "*.{js,jsx,ts,tsx}": [
+            "eslint --fix",
+            "prettier --write"
+        ],
+        "*.{json,md}": [
+            "prettier --write"
+        ]
+    },
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "files": [
+        "dist",
+        "types",
+        "README.md"
+    ],
+    "peerDependencies": {
+        "exceljs": "^4.4.0"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.27.1",
+        "@babel/preset-env": "^7.27.1",
+        "@babel/preset-typescript": "^7.27.1",
+        "@eslint/js": "^9.26.0",
+        "@jest/globals": "^29.7.0",
+        "@rollup/plugin-typescript": "^12.1.2",
+        "@types/jest": "^29.5.14",
+        "eslint": "^9.26.0",
+        "globals": "^16.0.0",
+        "jest": "^29.7.0",
+        "jest-environment-jsdom": "^29.7.0",
+        "lint-staged": "^15.5.1",
+        "prettier": "^3.5.3",
+        "rollup-plugin-copy-assets": "^2.0.3",
+        "rollup-plugin-serve": "^3.0.0",
+        "ts-jest": "^29.3.2",
+        "ts-node": "^10.9.2",
+        "typescript-eslint": "^8.31.1"
+    }
+}
