@@ -3,38 +3,31 @@ import Excel from './internal/excel.js'
 
 export { TableParser, Excel }
 
-const table2excel = (tables: HTMLTableElement[]) => {
+const table2excel = (tables: HTMLTableElement[], options?: { sheetName?: string, downLoadName?: string }) => {
     const tableParser = tables.map(table => {
         return new TableParser(table)
     })
-    // console.log(tableParser);
-
     const generator = new Excel(tableParser)
-    generator.generateSheet('table2excel')
+
+    generator.generateSheet(options?.sheetName || 'table2excel')
     generator.traverseCell(
         cell => {
-            console.log(
-                cell.getStyle('backgroundColor', ['rgba(0, 0, 0, 0)']),
-                cell,
-            )
+            cell.generateStyle()
             return {
                 value: cell.node.innerText,
-                font: { bold: true, name: 'Comic Sans MS' },
-                alignment: {
-                    horizontal: 'center',
-                    vertical: 'middle',
-                },
+                font: cell.getFont(),
+                fill: cell.getFill(),
+                alignment: cell.getAlignment(),
+                border: cell.getBorder()
             }
         },
         row => {
-            const height = row.getStyle('height')
-            console.log(height, 111121)
-
-            return { height }
+            row.generateStyle()
+            return { height: Number.parseFloat(row.getProperty('height')) }
         },
         true,
     )
-    // generator.downLoad('21111.xlsx')
+    generator.downLoad(options?.downLoadName || 'table2excel.xlsx')
 }
 
 export default table2excel

@@ -1,10 +1,9 @@
 {
-    "name": "table2excel",
+    "name": "table-export-excel",
     "version": "1.0.0",
     "main": "dist/main.cjs.js",
     "module": "dist/main.es.js",
-    "types": "globals.d.ts",
-    "type": "module",
+    "types": "./global.d.ts",
     "scripts": {
         "clean": "rm -rf dist",
         "dev": "npm run clean && rollup -c ./rollup.config.dev.js --watch",
@@ -27,8 +26,8 @@
     "description": "",
     "files": [
         "dist",
-        "types",
-        "README.md"
+        "README.md",
+        "global.d.ts"
     ],
     "peerDependencies": {
         "exceljs": "^4.4.0"
