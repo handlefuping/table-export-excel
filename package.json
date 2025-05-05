@@ -10,7 +10,8 @@
         "build": "npm run clean && rollup -c ./rollup.config.prod.js",
         "test": "jest",
         "lint": "eslint .",
-        "prepush": "npm run lint && npm test"
+        "prepush": "npm run lint && npm test",
+        "prepublishOnly": "npm version patch"
     },
     "lint-staged": {
         "*.{js,jsx,ts,tsx}": [
@@ -21,7 +22,11 @@
             "prettier --write"
         ]
     },
-    "author": "",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/handlefuping/table-export-excel.git"
+    },
+    "author": "handlefuping",
     "license": "ISC",
     "description": "",
     "files": [

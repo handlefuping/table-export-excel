@@ -7,10 +7,10 @@ const table2excel = (tables: HTMLTableElement[], options?: { sheetName?: string,
     const tableParser = tables.map(table => {
         return new TableParser(table)
     })
-    const generator = new Excel(tableParser)
+    const excel = new Excel(tableParser)
 
-    generator.generateSheet(options?.sheetName || 'table2excel')
-    generator.traverseCell(
+    excel.generateSheet(options?.sheetName || 'table2excel')
+    excel.traverseCell(
         cell => {
             cell.generateStyle()
             return {
@@ -27,7 +27,7 @@ const table2excel = (tables: HTMLTableElement[], options?: { sheetName?: string,
         },
         true,
     )
-    generator.downLoad(options?.downLoadName || 'table2excel.xlsx')
+    excel.downLoad(options?.downLoadName || 'table2excel.xlsx')
 }
 
 export default table2excel
